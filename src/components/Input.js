@@ -8,7 +8,7 @@ export default class Input extends React.Component {
       <div>
         <label htmlFor={ dataTestId }>
           Name:
-          <input type={ type } data-testid={ dataTestId } id={ dataTestId }/>
+          <input type={ type } data-testid={ dataTestId } id={ dataTestId } />
         </label>
       </div>
     );
@@ -18,4 +18,4 @@ export default class Input extends React.Component {
 Input.propTypes = {
   type: PropTypes.string.isRequired,
   dataTestId: PropTypes.string.isRequired,
-}
+};
