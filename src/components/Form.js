@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Input from './Input';
 import TextArea from './TextArea';
 import Select from './Select';
-import Checkbox from './Checkbox'
+import Checkbox from './Checkbox';
 import Button from './Button';
 
 export default class Form extends React.Component {

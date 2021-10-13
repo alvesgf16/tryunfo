@@ -21,7 +21,7 @@ export default class Checkbox extends React.Component {
   }
 }
 
-Input.propTypes = {
+Checkbox.propTypes = {
   checked: PropTypes.string.isRequired,
   dataTestId: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
