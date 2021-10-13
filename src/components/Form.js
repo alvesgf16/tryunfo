@@ -11,7 +11,7 @@ export default class Form extends React.Component {
       <form>
         <Input type="text" dataTestId="name-input" label="Name: " />
         <TextArea dataTestId="description-input" label="Description: " />
-        {new Array(attrCount).map((_pos, index) => (<Input
+        {Array.from({ length: attrCount }).map((_pos, index) => (<Input
           key={ `attr${index + 1}-input` }
           type="number"
           dataTestId={ `attr${index + 1}-input` }
