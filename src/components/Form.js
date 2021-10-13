@@ -27,6 +27,7 @@ export default class Form extends React.Component {
       <form>
         <Input
           value={ cardName }
+          name="cardName"
           type="text"
           dataTestId="name-input"
           label="Name: "
@@ -34,12 +35,14 @@ export default class Form extends React.Component {
         />
         <TextArea
           value={ cardDescription }
+          name="cardDescription"
           dataTestId="description-input"
           label="Description: "
           onChange={ onInputChange }
         />
         <Input
           value={ cardAttr1 }
+          name="cardAttr1"
           type="number"
           dataTestId="attr1-input"
           label="Attribute 1: "
@@ -47,6 +50,7 @@ export default class Form extends React.Component {
         />
         <Input
           value={ cardAttr2 }
+          name="cardAttr2"
           type="number"
           dataTestId="attr2-input"
           label="Attribute 2: "
@@ -54,6 +58,7 @@ export default class Form extends React.Component {
         />
         <Input
           value={ cardAttr3 }
+          name="cardAttr3"
           type="number"
           dataTestId="attr3-input"
           label="Attribute 3: "
@@ -61,6 +66,7 @@ export default class Form extends React.Component {
         />
         <Input
           value={ cardImage }
+          name="cardImage"
           type="text"
           dataTestId="image-input"
           label="Image: "
@@ -68,12 +74,14 @@ export default class Form extends React.Component {
         />
         <Select
           value={ cardRare }
+          name="cardRare"
           dataTestId="rare-input"
           label="Rarity: "
           onChange={ onInputChange }
         />
         <Checkbox
           checked={ cardTrunfo }
+          name="cardTrunfo"
           dataTestId="trunfo-input"
           label="Super Trunfo?"
           onChange={ onInputChange }

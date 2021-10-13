@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 
 export default class Select extends React.Component {
   render() {
-    const { dataTestId, label } = this.props;
+    const { dataTestId, name, label, onChange } = this.props;
     return (
       <div>
         <label htmlFor={ dataTestId }>
           { label }
-          <select data-testid={ dataTestId } id={ dataTestId }>
+          <select
+            data-testid={ dataTestId }
+            name={ name }
+            id={ dataTestId }
+            onChange={ onChange }
+          >
             <option value="normal">Normal</option>
             <option value="raro">Rare</option>
             <option value="muito raro">Very Rare</option>
@@ -21,5 +26,7 @@ export default class Select extends React.Component {
 
 Select.propTypes = {
   dataTestId: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
