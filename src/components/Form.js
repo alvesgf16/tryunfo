@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Input from './Input';
 import TextArea from './TextArea';
 import Select from './Select';
+import Checkbox from './Checkbox'
 import Button from './Button';
 
 export default class Form extends React.Component {
@@ -71,9 +72,8 @@ export default class Form extends React.Component {
           label="Rarity: "
           onChange={ onInputChange }
         />
-        <Input
+        <Checkbox
           checked={ cardTrunfo }
-          type="checkbox"
           dataTestId="trunfo-input"
           label="Super Trunfo?"
           onChange={ onInputChange }
