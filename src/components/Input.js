@@ -9,7 +9,7 @@ export default class Input extends React.Component {
         <label htmlFor={ dataTestId }>
           { label }
           <input
-            placeholder={ value }
+            value={ value }
             name={ name }
             type={ type }
             data-testid={ dataTestId }

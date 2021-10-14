@@ -8,18 +8,20 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      cards: [],
     };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.enableSaveButton = this.enableSaveButton.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
   }
 
   onInputChange({ target }) {
@@ -28,6 +30,42 @@ class App extends React.Component {
 
     this.setState({ [name]: value });
     this.enableSaveButton();
+  }
+
+  onSaveButtonClick(event) {
+    event.preventDefault();
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      cards,
+    } = this.state;
+
+    cards.push({
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    });
+
+    this.setState(() => ({
+      cardName: '',
+      cardDescription: '',
+      cardImage: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardRare: 'normal',
+    }));
   }
 
   enableSaveButton() {
@@ -48,12 +86,6 @@ class App extends React.Component {
       && cardRare && cardAttrs.reduce((acc, cur) => acc + cur) <= totalMax
       && cardAttrs.every((cardAttr) => cardAttr >= 0 && cardAttr <= attrMax)) });
     });
-    // const cardAttrs = [cardAttr1, cardAttr2, cardAttr3];
-    // const totalMax = 210;
-    // const singleMax = 90;
-    // && cardDescription && cardImage
-    // && cardRare && cardAttrs.reduce((sum, cur) => sum + cur) <= totalMax
-    // && cardAttrs.every((cardAttr) => cardAttr >= 0 && cardAttr <= singleMax)
   }
 
   render() {
@@ -85,6 +117,7 @@ class App extends React.Component {
           hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
