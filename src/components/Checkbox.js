@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 export default class Checkbox extends React.Component {
   render() {
-    const { checked, name, dataTestId, label, onChange } = this.props;
+    const { checked, onChange } = this.props;
     return (
       <div>
-        <label htmlFor={ dataTestId }>
-          { label }
+        <label htmlFor="trunfo-Input">
+          Super Trunfo?
           <input
             checked={ checked }
-            name={ name }
+            name="cardTrunfo"
             type="checkbox"
-            data-testid={ dataTestId }
-            id={ dataTestId }
+            data-testid="trunfo-input"
+            id="trunfo-input"
             onChange={ onChange }
           />
         </label>
@@ -24,8 +24,5 @@ export default class Checkbox extends React.Component {
 
 Checkbox.propTypes = {
   checked: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired,
-  dataTestId: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };

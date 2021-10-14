@@ -17,7 +17,7 @@ export default class Form extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      // hasTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
@@ -79,13 +79,11 @@ export default class Form extends React.Component {
           label="Rarity: "
           onChange={ onInputChange }
         />
-        <Checkbox
-          checked={ cardTrunfo }
-          name="cardTrunfo"
-          dataTestId="trunfo-input"
-          label="Super Trunfo?"
-          onChange={ onInputChange }
-        />
+        {
+          hasTrunfo
+            ? <p>Você já tem um Super Trunfo em seu baralho</p>
+            : <Checkbox checked={ cardTrunfo } onChange={ onInputChange } />
+        }
         <Button
           disabled={ isSaveButtonDisabled }
           dataTestId="save-button"
@@ -106,7 +104,7 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  // hasTrunfo: PropTypes.bool.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
