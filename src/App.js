@@ -8,9 +8,9 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
@@ -19,14 +19,21 @@ class App extends React.Component {
     };
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.enableSaveButton = this.enableSaveButton.bind(this);
   }
 
   onInputChange({ target }) {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
-    this.setState({
-      [name]: value,
+    this.setState({ [name]: value });
+    this.enableSaveButton();
+  }
+
+  enableSaveButton() {
+    this.setState((state) => {
+      const { cardName } = state;
+      return { isSaveButtonDisabled: !cardName };
     });
   }
 

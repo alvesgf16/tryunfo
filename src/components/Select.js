@@ -14,6 +14,7 @@ export default class Select extends React.Component {
             id={ dataTestId }
             onChange={ onChange }
           >
+            <option value=""> </option>
             <option value="normal">Normal</option>
             <option value="raro">Rare</option>
             <option value="muito raro">Very Rare</option>

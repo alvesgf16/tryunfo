@@ -23,7 +23,11 @@ export default class Input extends React.Component {
 }
 
 Input.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+  ]).isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   dataTestId: PropTypes.string.isRequired,
