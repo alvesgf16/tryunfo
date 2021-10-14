@@ -12,7 +12,7 @@ class App extends React.Component {
       cardAttr2: '',
       cardAttr3: '',
       cardImage: '',
-      cardRare: '',
+      cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
@@ -31,10 +31,29 @@ class App extends React.Component {
   }
 
   enableSaveButton() {
-    this.setState((state) => {
-      const { cardName } = state;
-      return { isSaveButtonDisabled: !cardName };
+    this.setState(({
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    }) => {
+      const cardAttrsStrs = [cardAttr1, cardAttr2, cardAttr3];
+      const cardAttrs = cardAttrsStrs.map((cardAttr) => parseInt(cardAttr, 10));
+      const attrMax = 90;
+      const totalMax = 210;
+      return ({ isSaveButtonDisabled: !(cardName && cardDescription && cardImage
+      && cardRare && cardAttrs.reduce((acc, cur) => acc + cur) <= totalMax
+      && cardAttrs.every((cardAttr) => cardAttr >= 0 && cardAttr <= attrMax)) });
     });
+    // const cardAttrs = [cardAttr1, cardAttr2, cardAttr3];
+    // const totalMax = 210;
+    // const singleMax = 90;
+    // && cardDescription && cardImage
+    // && cardRare && cardAttrs.reduce((sum, cur) => sum + cur) <= totalMax
+    // && cardAttrs.every((cardAttr) => cardAttr >= 0 && cardAttr <= singleMax)
   }
 
   render() {
