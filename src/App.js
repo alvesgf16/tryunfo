@@ -22,6 +22,7 @@ class App extends React.Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.enableSaveButton = this.enableSaveButton.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   onInputChange({ target }) {
@@ -34,6 +35,7 @@ class App extends React.Component {
 
   onSaveButtonClick(event) {
     event.preventDefault();
+
     const {
       cardName,
       cardDescription,
@@ -43,10 +45,10 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      cards,
+      hasTrunfo,
     } = this.state;
 
-    cards.push({
+    const cardInfo = {
       cardName,
       cardDescription,
       cardAttr1,
@@ -55,9 +57,11 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-    });
+      hasTrunfo,
+      deleteCard: this.deleteCard,
+    };
 
-    this.setState(() => ({
+    this.setState((prevState) => ({
       cardName: '',
       cardDescription: '',
       cardImage: '',
@@ -66,6 +70,8 @@ class App extends React.Component {
       cardAttr3: '0',
       cardRare: 'normal',
       hasTrunfo: cardTrunfo,
+      isSaveButtonDisabled: true,
+      cards: [...prevState.cards, cardInfo],
     }));
   }
 
@@ -87,6 +93,23 @@ class App extends React.Component {
       && cardRare && cardAttrs.reduce((acc, cur) => acc + cur) <= totalMax
       && cardAttrs.every((cardAttr) => cardAttr >= 0 && cardAttr <= attrMax)) });
     });
+  }
+
+  deleteCard({ target }) {
+    const selectedCardName = target.parentElement.id;
+    const { cards } = this.state;
+    const selectedCard = cards
+      .find(({ cardName }) => cardName === selectedCardName);
+    const isTrunfo = selectedCard.cardTrunfo;
+
+    this.setState((prevState) => (isTrunfo ? ({
+      cards: prevState.cards.filter(({ cardName }) => cardName !== selectedCardName),
+      cardTrunfo: !isTrunfo,
+      hasTrunfo: !isTrunfo,
+    }) : ({
+      cards: prevState.cards.filter(({ cardName }) => cardName !== selectedCardName),
+    })
+    ));
   }
 
   render() {
@@ -130,9 +153,11 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
         />
         { cards.map((card, index) => (<Card
-          key={ `card${index}` }
+          key={ `card${index + 1}` }
+          deckCard
           cardName={ card.cardName }
           cardDescription={ card.cardDescription }
           cardAttr1={ card.cardAttr1 }
@@ -141,6 +166,8 @@ class App extends React.Component {
           cardImage={ card.cardImage }
           cardRare={ card.cardRare }
           cardTrunfo={ card.cardTrunfo }
+          hasTrunfo={ card.hasTrunfo }
+          deleteCard={ card.deleteCard }
         />)) }
       </div>
     );

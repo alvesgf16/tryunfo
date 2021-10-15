@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export default class Card extends React.Component {
   render() {
     const {
+      deckCard,
       cardName,
       cardDescription,
       cardAttr1,
@@ -11,10 +12,13 @@ export default class Card extends React.Component {
       cardAttr3,
       cardImage,
       cardRare,
-      cardTrunfo } = this.props;
+      cardTrunfo,
+      hasTrunfo,
+      deleteCard,
+    } = this.props;
 
     return (
-      <div>
+      <div id={ cardName }>
         <h3 data-testid="name-card">{ cardName }</h3>
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
         <p data-testid="description-card">{ cardDescription }</p>
@@ -22,13 +26,25 @@ export default class Card extends React.Component {
         <p data-testid="attr2-card">{ cardAttr2 }</p>
         <p data-testid="attr3-card">{ cardAttr3 }</p>
         <p data-testid="rare-card">{ cardRare }</p>
-        { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
+        { cardTrunfo && hasTrunfo === false && (
+          <p data-testid="trunfo-card">Super Trunfo</p>
+        ) }
+        { deckCard && (
+          <button
+            type="button"
+            data-testid="delete-button"
+            onClick={ deleteCard }
+          >
+            Excluir
+          </button>
+        ) }
       </div>
     );
   }
 }
 
 Card.propTypes = {
+  deckCard: PropTypes.bool,
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
   cardAttr1: PropTypes.string.isRequired,
@@ -37,4 +53,11 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
+  deleteCard: PropTypes.func,
+};
+
+Card.defaultProps = {
+  deckCard: false,
+  deleteCard: () => {},
 };
