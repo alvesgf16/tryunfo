@@ -16,6 +16,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      nameFilter: '',
       cards: [],
     };
 
@@ -124,6 +125,7 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       isSaveButtonDisabled,
+      nameFilter,
       cards,
     } = this.state;
 
@@ -155,20 +157,28 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
         />
-        { cards.map((card, index) => (<Card
-          key={ `card${index + 1}` }
-          deckCard
-          cardName={ card.cardName }
-          cardDescription={ card.cardDescription }
-          cardAttr1={ card.cardAttr1 }
-          cardAttr2={ card.cardAttr2 }
-          cardAttr3={ card.cardAttr3 }
-          cardImage={ card.cardImage }
-          cardRare={ card.cardRare }
-          cardTrunfo={ card.cardTrunfo }
-          hasTrunfo={ card.hasTrunfo }
-          deleteCard={ card.deleteCard }
-        />)) }
+        <input
+          type="text"
+          data-testid="name-filter"
+          name="nameFilter"
+          value={ nameFilter }
+          onChange={ this.onInputChange }
+        />
+        { cards.filter((card) => card.cardName.includes(nameFilter))
+          .map((card, index) => (<Card
+            key={ `card${index + 1}` }
+            deckCard
+            cardName={ card.cardName }
+            cardDescription={ card.cardDescription }
+            cardAttr1={ card.cardAttr1 }
+            cardAttr2={ card.cardAttr2 }
+            cardAttr3={ card.cardAttr3 }
+            cardImage={ card.cardImage }
+            cardRare={ card.cardRare }
+            cardTrunfo={ card.cardTrunfo }
+            hasTrunfo={ card.hasTrunfo }
+            deleteCard={ card.deleteCard }
+          />)) }
       </div>
     );
   }
