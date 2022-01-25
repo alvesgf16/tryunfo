@@ -18,6 +18,7 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       nameFilter: '',
       rareFilter: 'todas',
+      trunfoFilter: false,
       cards: [],
     };
 
@@ -128,6 +129,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
       nameFilter,
       rareFilter,
+      trunfoFilter,
       cards,
     } = this.state;
 
@@ -165,19 +167,33 @@ class App extends React.Component {
           name="nameFilter"
           value={ nameFilter }
           onChange={ this.onInputChange }
+          disabled={ trunfoFilter }
         />
         <select
           data-testid="rare-filter"
           name="rareFilter"
           value={ rareFilter }
           onChange={ this.onInputChange }
+          disabled={ trunfoFilter }
         >
           <option value="todas">Todas</option>
           <option value="normal">Normal</option>
           <option value="raro">Rare</option>
           <option value="muito raro">Very Rare</option>
         </select>
+        <label htmlFor="trunfo-filter">
+          <input
+            checked={ trunfoFilter }
+            name="trunfoFilter"
+            type="checkbox"
+            data-testid="trunfo-filter"
+            id="trunfo-filter"
+            onChange={ this.onInputChange }
+          />
+          Super Trunfo
+        </label>
         { cards.filter((card) => {
+          if (trunfoFilter) return card.cardTrunfo && !card.hasTrunfo;
           const getRareFilter = () => (rareFilter === 'todas'
             ? true : card.cardRare === rareFilter);
           const result = card.cardName.includes(nameFilter) && getRareFilter();
