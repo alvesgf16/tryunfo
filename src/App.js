@@ -4,7 +4,7 @@ import Card from './components/Card';
 import TryunfoContext from './context/TryunfoContext';
 
 function App() {
-  const { state, onInputChange, onSaveButtonClick } = useContext(TryunfoContext);
+  const { state, onInputChange } = useContext(TryunfoContext);
 
   const {
     cardName,
@@ -37,8 +37,6 @@ function App() {
         cardTrunfo={ cardTrunfo }
         hasTrunfo={ hasTrunfo }
         isSaveButtonDisabled={ isSaveButtonDisabled }
-        onInputChange={ onInputChange }
-        onSaveButtonClick={ onSaveButtonClick }
       />
       <Card
         cardName={ cardName }
