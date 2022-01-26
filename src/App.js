@@ -1,24 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import TryunfoContext from './context/TryunfoContext';
 
 function App() {
-  const [state, setState] = useState({
-    cardName: '',
-    cardDescription: '',
-    cardAttr1: '0',
-    cardAttr2: '0',
-    cardAttr3: '0',
-    cardImage: '',
-    cardRare: 'normal',
-    cardTrunfo: false,
-    hasTrunfo: false,
-    isSaveButtonDisabled: true,
-    nameFilter: '',
-    rareFilter: 'todas',
-    trunfoFilter: false,
-    cards: [],
-  });
+  const { state, setState } = useContext(TryunfoContext);
 
   function enableSaveButton() {
     setState(({
