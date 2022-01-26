@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import TryunfoProvider from './context/TryunfoProvider';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <TryunfoProvider>
     <App />
-  </React.StrictMode>,
+  </TryunfoProvider>,
   document.getElementById('root'),
 );
