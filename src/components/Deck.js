@@ -4,13 +4,7 @@ import Card from './Card';
 
 export default function Deck() {
   const { state } = useContext(TryunfoContext);
-
-  const {
-    nameFilter,
-    rareFilter,
-    trunfoFilter,
-    cards,
-  } = state;
+  const { nameFilter, rareFilter, trunfoFilter, cards } = state;
 
   return (
     <div>
