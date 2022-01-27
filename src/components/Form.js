@@ -24,57 +24,57 @@ export default function Form() {
   return (
     <form onSubmit={ onSaveButtonClick }>
       <Input
-        value={ cardName }
-        name="cardName"
         type="text"
         dataTestId="name-input"
         label="Name: "
+        name="cardName"
+        value={ cardName }
         onChange={ onInputChange }
       />
       <TextArea
-        value={ cardDescription }
-        name="cardDescription"
         dataTestId="description-input"
         label="Description: "
+        name="cardDescription"
+        value={ cardDescription }
         onChange={ onInputChange }
       />
       <Input
-        value={ cardAttr1 }
-        name="cardAttr1"
         type="number"
         dataTestId="attr1-input"
         label="Attribute 1: "
+        name="cardAttr1"
+        value={ cardAttr1 }
         onChange={ onInputChange }
       />
       <Input
-        value={ cardAttr2 }
-        name="cardAttr2"
         type="number"
         dataTestId="attr2-input"
         label="Attribute 2: "
+        name="cardAttr2"
+        value={ cardAttr2 }
         onChange={ onInputChange }
       />
       <Input
-        value={ cardAttr3 }
-        name="cardAttr3"
         type="number"
         dataTestId="attr3-input"
         label="Attribute 3: "
+        name="cardAttr3"
+        value={ cardAttr3 }
         onChange={ onInputChange }
       />
       <Input
-        value={ cardImage }
-        name="cardImage"
         type="text"
         dataTestId="image-input"
         label="Image: "
+        name="cardImage"
+        value={ cardImage }
         onChange={ onInputChange }
       />
       <Select
-        value={ cardRare }
-        name="cardRare"
         dataTestId="rare-input"
         label="Rarity: "
+        name="cardRare"
+        value={ cardRare }
         onChange={ onInputChange }
       />
       {
@@ -83,9 +83,9 @@ export default function Form() {
           : <Checkbox checked={ cardTrunfo } onChange={ onInputChange } />
       }
       <Button
-        disabled={ isSaveButtonDisabled }
         dataTestId="save-button"
         label="Salvar"
+        disabled={ isSaveButtonDisabled }
         onClick={ onSaveButtonClick }
       />
     </form>
