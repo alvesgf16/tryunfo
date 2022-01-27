@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import TryunfoContext from './context/TryunfoContext';
+import Filters from './components/Filters';
 
 function App() {
-  const { state, onInputChange } = useContext(TryunfoContext);
+  const { state } = useContext(TryunfoContext);
 
   const {
     nameFilter,
@@ -18,37 +19,7 @@ function App() {
       <h1>Tryunfo</h1>
       <Form />
       <Card info={ state } />
-      <input
-        type="text"
-        data-testid="name-filter"
-        name="nameFilter"
-        value={ nameFilter }
-        onChange={ onInputChange }
-        disabled={ trunfoFilter }
-      />
-      <select
-        data-testid="rare-filter"
-        name="rareFilter"
-        value={ rareFilter }
-        onChange={ onInputChange }
-        disabled={ trunfoFilter }
-      >
-        <option value="todas">Todas</option>
-        <option value="normal">Normal</option>
-        <option value="raro">Rare</option>
-        <option value="muito raro">Very Rare</option>
-      </select>
-      <label htmlFor="trunfo-filter">
-        <input
-          checked={ trunfoFilter }
-          name="trunfoFilter"
-          type="checkbox"
-          data-testid="trunfo-filter"
-          id="trunfo-filter"
-          onChange={ onInputChange }
-        />
-        Super Trunfo
-      </label>
+      <Filters />
       { cards.filter((card) => {
         if (trunfoFilter) return card.cardTrunfo && !card.hasTrunfo;
         const getRareFilter = () => (rareFilter === 'todas'
