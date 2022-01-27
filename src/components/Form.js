@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import Input from './Input';
-import TextArea from './TextArea';
-import Select from './Select';
-import Checkbox from './Checkbox';
-import Button from './Button';
+import Input from './inner-components/Input';
+import TextArea from './inner-components/TextArea';
+import Select from './inner-components/Select';
+import Checkbox from './inner-components/Checkbox';
+import Button from './inner-components/Button';
 import TryunfoContext from '../context/TryunfoContext';
 
 export default function Form() {

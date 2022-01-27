@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import TryunfoContext from '../context/TryunfoContext';
-import Checkbox from './Checkbox';
-import Input from './Input';
-import Select from './Select';
+import Checkbox from './inner-components/Checkbox';
+import Input from './inner-components/Input';
+import Select from './inner-components/Select';
 
 export default function Filters() {
   const { state, onInputChange } = useContext(TryunfoContext);
