@@ -1,36 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Input extends React.Component {
-  render() {
-    const { value, name, type, dataTestId, label, onChange } = this.props;
-    return (
-      <div>
-        <label htmlFor={ dataTestId }>
-          { label }
-          <input
-            value={ value }
-            name={ name }
-            type={ type }
-            data-testid={ dataTestId }
-            id={ dataTestId }
-            onChange={ onChange }
-          />
-        </label>
-      </div>
-    );
-  }
+export default function Input(props) {
+  const { dataTestId, label, type, name, value, disabled, onChange } = props;
+  return (
+    <label htmlFor={ dataTestId }>
+      { label }
+      <input
+        type={ type }
+        id={ dataTestId }
+        data-testid={ dataTestId }
+        name={ name }
+        value={ value }
+        disabled={ disabled }
+        onChange={ onChange }
+      />
+    </label>
+  );
 }
-
 Input.propTypes = {
+  dataTestId: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
   ]).isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  dataTestId: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
 };
+
+Input.defaultProps = { label: '', disabled: false };

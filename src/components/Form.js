@@ -80,7 +80,14 @@ export default function Form() {
       {
         hasTrunfo
           ? <p>Você já tem um Super Trunfo em seu baralho</p>
-          : <Checkbox checked={ cardTrunfo } onChange={ onInputChange } />
+          : (
+            <Checkbox
+              dataTestId="trunfo-input"
+              label="Super Trunfo?"
+              name="cardTrunfo"
+              checked={ cardTrunfo }
+              onChange={ onInputChange }
+            />)
       }
       <Button
         dataTestId="save-button"
