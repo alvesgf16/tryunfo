@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Card(props) {
+export default function Card({ deckCard, info }) {
   const {
-    deckCard,
     cardName,
     cardDescription,
     cardAttr1,
@@ -14,7 +13,7 @@ export default function Card(props) {
     cardTrunfo,
     hasTrunfo,
     deleteCard,
-  } = props;
+  } = info;
 
   return (
     <div id={ cardName }>
@@ -43,19 +42,21 @@ export default function Card(props) {
 
 Card.propTypes = {
   deckCard: PropTypes.bool,
-  cardName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
-  cardImage: PropTypes.string.isRequired,
-  cardRare: PropTypes.string.isRequired,
-  cardTrunfo: PropTypes.bool.isRequired,
-  hasTrunfo: PropTypes.bool.isRequired,
-  deleteCard: PropTypes.func,
+  info: PropTypes.shape({
+    cardName: PropTypes.string.isRequired,
+    cardDescription: PropTypes.string.isRequired,
+    cardAttr1: PropTypes.string.isRequired,
+    cardAttr2: PropTypes.string.isRequired,
+    cardAttr3: PropTypes.string.isRequired,
+    cardImage: PropTypes.string.isRequired,
+    cardRare: PropTypes.string.isRequired,
+    cardTrunfo: PropTypes.bool.isRequired,
+    hasTrunfo: PropTypes.bool.isRequired,
+    deleteCard: PropTypes.func,
+  }),
 };
 
 Card.defaultProps = {
   deckCard: false,
-  deleteCard: () => {},
+  info: { deleteCard: () => {} },
 };
