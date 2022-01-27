@@ -22,21 +22,23 @@ function TryunfoProvider({ children }) {
 
   function enableSaveButton() {
     setState((prevState) => {
-      const { cardName,
-        cardDescription,
-        cardImage,
-        cardRare,
-        cardAttr1,
-        cardAttr2,
-        cardAttr3 } = prevState;
-      const cardAttrsStrs = [cardAttr1, cardAttr2, cardAttr3];
-      const cardAttrs = cardAttrsStrs.map((cardAttr) => parseInt(cardAttr, 10));
+      const { cardName: name,
+        cardDescription: description,
+        cardImage: image,
+        cardRare: rare,
+        cardAttr1: attr1,
+        cardAttr2: attr2,
+        cardAttr3: attr3 } = prevState;
+
+      const attrsStrs = [attr1, attr2, attr3];
+      const attrs = attrsStrs.map((attr) => parseInt(attr, 10));
       const attrMax = 90;
       const totalMax = 210;
+
       return ({ ...prevState,
-        isSaveButtonDisabled: !(cardName && cardDescription && cardImage
-      && cardRare && cardAttrs.reduce((acc, cur) => acc + cur) <= totalMax
-      && cardAttrs.every((cardAttr) => cardAttr >= 0 && cardAttr <= attrMax)) });
+        isSaveButtonDisabled: !(name && description && image && rare
+          && attrs.reduce((acc, cur) => acc + cur) <= totalMax
+          && attrs.every((attr) => attr >= 0 && attr <= attrMax)) });
     });
   }
 
@@ -49,27 +51,24 @@ function TryunfoProvider({ children }) {
   }
 
   function deleteCard({ target }) {
-    const selectedCardName = target.parentElement.id;
     const { cards } = state;
-    const selectedCard = cards
-      .find(({ cardName }) => cardName === selectedCardName);
-    const isTrunfo = selectedCard.cardTrunfo;
+    const { id: name } = target.parentElement;
+    const selectedCard = cards.find(({ cardName }) => cardName === name);
+    const { cardTrunfo: isTrunfo } = selectedCard;
 
-    setState((prevState) => (isTrunfo ? ({ ...prevState,
-      cards: prevState.cards.filter(({ cardName }) => cardName !== selectedCardName),
-      cardTrunfo: !isTrunfo,
-      hasTrunfo: !isTrunfo,
-    }) : ({
-      cards: prevState.cards.filter(({ cardName }) => cardName !== selectedCardName),
-    })
+    setState((prevState) => (
+      isTrunfo ? ({ ...prevState,
+        cards: prevState.cards.filter(({ cardName }) => cardName !== name),
+        cardTrunfo: !isTrunfo,
+        hasTrunfo: !isTrunfo,
+      }) : ({ cards: prevState.cards.filter(({ cardName }) => cardName !== name) })
     ));
   }
 
   function onSaveButtonClick(event) {
     event.preventDefault();
 
-    const {
-      cardName,
+    const { cardName,
       cardDescription,
       cardAttr1,
       cardAttr2,
@@ -77,11 +76,9 @@ function TryunfoProvider({ children }) {
       cardImage,
       cardRare,
       cardTrunfo,
-      hasTrunfo,
-    } = state;
+      hasTrunfo } = state;
 
-    const cardInfo = {
-      cardName,
+    const cardInfo = { cardName,
       cardDescription,
       cardAttr1,
       cardAttr2,
@@ -90,8 +87,7 @@ function TryunfoProvider({ children }) {
       cardRare,
       cardTrunfo,
       hasTrunfo,
-      deleteCard,
-    };
+      deleteCard };
 
     setState((prevState) => ({ ...prevState,
       cardName: '',
@@ -103,8 +99,7 @@ function TryunfoProvider({ children }) {
       cardRare: 'normal',
       hasTrunfo: cardTrunfo,
       isSaveButtonDisabled: true,
-      cards: [...prevState.cards, cardInfo],
-    }));
+      cards: [...prevState.cards, cardInfo] }));
   }
 
   const contextValue = { state, onInputChange, onSaveButtonClick };
