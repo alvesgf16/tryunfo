@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import Input from './Input';
 import TextArea from './TextArea';
 import Select from './Select';
@@ -7,7 +6,8 @@ import Checkbox from './Checkbox';
 import Button from './Button';
 import TryunfoContext from '../context/TryunfoContext';
 
-export default function Form(props) {
+export default function Form() {
+  const { state, onInputChange, onSaveButtonClick } = useContext(TryunfoContext);
   const {
     cardName,
     cardDescription,
@@ -19,9 +19,7 @@ export default function Form(props) {
     cardTrunfo,
     hasTrunfo,
     isSaveButtonDisabled,
-  } = props;
-
-  const { onInputChange, onSaveButtonClick } = useContext(TryunfoContext);
+  } = state;
 
   return (
     <form onSubmit={ onSaveButtonClick }>
@@ -93,16 +91,3 @@ export default function Form(props) {
     </form>
   );
 }
-
-Form.propTypes = {
-  cardName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
-  cardImage: PropTypes.string.isRequired,
-  cardRare: PropTypes.string.isRequired,
-  cardTrunfo: PropTypes.bool.isRequired,
-  hasTrunfo: PropTypes.bool.isRequired,
-  isSaveButtonDisabled: PropTypes.bool.isRequired,
-};
