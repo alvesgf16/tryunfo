@@ -8,12 +8,15 @@ import TryunfoContext from './context/TryunfoContext';
 function App() {
   const { state } = useContext(TryunfoContext);
   return (
-    <div>
-      <h1>Tryunfo</h1>
-      <Form />
-      <Card info={ state } />
-      <Filters />
-      <Deck />
+    <div className="flex flex-col">
+      <div className="flex">
+        <Form />
+        <Card info={ state } />
+      </div>
+      <div className="flex">
+        <Filters />
+        <Deck />
+      </div>
     </div>
   );
 }
