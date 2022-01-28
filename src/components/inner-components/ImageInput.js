@@ -6,8 +6,8 @@ import LinkIcon from '../../images/icons/link-45deg.svg';
 export default function ImageInput(props) {
   const { value, disabled, onChange } = props;
   return (
-    <Form.Group className="mb-3" controlId="image-input">
-      <Form.Label>Image</Form.Label>
+    <Form.Group className="flex items-baseline mb-3" controlId="image-input">
+      <Form.Label className="mr-5">Image</Form.Label>
       <InputGroup>
         <InputGroup.Text><img src={ LinkIcon } alt="link icon" /></InputGroup.Text>
         <FormControl

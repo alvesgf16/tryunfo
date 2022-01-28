@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap';
 export default function Select(props) {
   const { dataTestId, label, name, value, disabled, onChange } = props;
   return (
-    <Form.Group className="mb-3" controlId={ dataTestId }>
+    <Form.Group className="mb-4" controlId={ dataTestId }>
       <Form.Label>{ label }</Form.Label>
       <Form.Select
         data-testid={ dataTestId }
@@ -14,10 +14,10 @@ export default function Select(props) {
         disabled={ disabled }
         onChange={ onChange }
       >
-        { name === 'rareFilter' && <option value="todas">Todas</option> }
+        { name === 'rareFilter' && <option value="todas">All</option> }
         <option value="normal">Normal</option>
-        <option value="raro">Rare</option>
-        <option value="muito raro">Very Rare</option>
+        <option value="rare">Rare</option>
+        <option value="very rare">Very Rare</option>
       </Form.Select>
     </Form.Group>
   );

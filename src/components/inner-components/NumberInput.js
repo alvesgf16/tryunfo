@@ -6,7 +6,7 @@ export default function NumberInput(props) {
   const { dataTestId, label, name, value, disabled, onChange } = props;
 
   return (
-    <InputGroup className="mb-3">
+    <InputGroup className="mt-3">
       <InputGroup.Text id={ dataTestId }>{ label }</InputGroup.Text>
       <FormControl
         type="number"

@@ -59,9 +59,11 @@ export default function Form() {
         value={ cardAttr3 }
         onChange={ onInputChange }
       />
-      <BootstrapForm.Text>
-        { `Remaining points = ${totalMax - attrs.reduce((acc, cur) => acc + cur)}` }
-      </BootstrapForm.Text>
+      <div className="flex mt-2.5 mb-10 justify-end">
+        <BootstrapForm.Text>
+          { `Remaining points = ${totalMax - attrs.reduce((acc, cur) => acc + cur)}` }
+        </BootstrapForm.Text>
+      </div>
       <ImageInput value={ cardImage } onChange={ onInputChange } />
       <Select
         dataTestId="rare-input"

@@ -8,6 +8,7 @@ export default function Button(props) {
     <BootstrapButton
       type="submit"
       data-testid={ dataTestId }
+      className="mt-16"
       disabled={ disabled }
       variant="primary"
     >
