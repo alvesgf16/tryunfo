@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form } from 'react-bootstrap';
 
 export default function Checkbox(props) {
   const { dataTestId, label, name, checked, onChange } = props;
   return (
-    <label htmlFor={ dataTestId }>
-      { label }
-      <input
-        type="checkbox"
-        id={ dataTestId }
-        data-testid={ dataTestId }
-        name={ name }
-        checked={ checked }
-        onChange={ onChange }
-      />
-    </label>
+    <Form.Check
+      type="checkbox"
+      id={ dataTestId }
+      data-testid={ dataTestId }
+      label={ label }
+      name={ name }
+      checked={ checked }
+      onChange={ onChange }
+    />
   );
 }
 

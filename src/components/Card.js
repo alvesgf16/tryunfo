@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card as BootstrapCard } from 'react-bootstrap';
 
 export default function Card({ deckCard, info }) {
   const {
@@ -16,17 +17,24 @@ export default function Card({ deckCard, info }) {
   } = info;
 
   return (
-    <div id={ cardName }>
-      <h3 data-testid="name-card">{ cardName }</h3>
-      <img src={ cardImage } alt={ cardName } data-testid="image-card" />
-      <p data-testid="description-card">{ cardDescription }</p>
-      <p data-testid="attr1-card">{ cardAttr1 }</p>
-      <p data-testid="attr2-card">{ cardAttr2 }</p>
-      <p data-testid="attr3-card">{ cardAttr3 }</p>
-      <p data-testid="rare-card">{ cardRare }</p>
-      { cardTrunfo && !hasTrunfo && (
-        <p data-testid="trunfo-card">Super Trunfo</p>
-      ) }
+    <div>
+      <BootstrapCard id={ cardName }>
+        <BootstrapCard.Title data-testid="name-card">{ cardName }</BootstrapCard.Title>
+        <BootstrapCard.Text data-testid="rare-card">{ cardRare }</BootstrapCard.Text>
+        <BootstrapCard.Img src={ cardImage } alt={ cardName } data-testid="image-card" />
+        <BootstrapCard.Body>
+          { cardTrunfo && !hasTrunfo && (
+            <BootstrapCard.Text data-testid="trunfo-card">
+              Super Trunfo
+            </BootstrapCard.Text>) }
+          <BootstrapCard.Text data-testid="description-card">
+            { cardDescription }
+          </BootstrapCard.Text>
+          <BootstrapCard.Text data-testid="attr1-card">{ cardAttr1 }</BootstrapCard.Text>
+          <BootstrapCard.Text data-testid="attr2-card">{ cardAttr2 }</BootstrapCard.Text>
+          <BootstrapCard.Text data-testid="attr3-card">{ cardAttr3 }</BootstrapCard.Text>
+        </BootstrapCard.Body>
+      </BootstrapCard>
       { deckCard && (
         <button
           type="button"

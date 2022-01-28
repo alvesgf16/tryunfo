@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form } from 'react-bootstrap';
 
 export default function Select(props) {
   const { dataTestId, label, name, value, disabled, onChange } = props;
   return (
-    <label htmlFor={ dataTestId }>
-      { label }
-      <select
-        id={ dataTestId }
+    <Form.Group className="mb-3" controlId={ dataTestId }>
+      <Form.Label>{ label }</Form.Label>
+      <Form.Select
         data-testid={ dataTestId }
         name={ name }
         value={ value }
@@ -18,8 +18,8 @@ export default function Select(props) {
         <option value="normal">Normal</option>
         <option value="raro">Rare</option>
         <option value="muito raro">Very Rare</option>
-      </select>
-    </label>
+      </Form.Select>
+    </Form.Group>
   );
 }
 

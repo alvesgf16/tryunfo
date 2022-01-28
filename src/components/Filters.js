@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import TryunfoContext from '../context/TryunfoContext';
 import Checkbox from './inner-components/Checkbox';
-import Input from './inner-components/Input';
+import TextInput from './inner-components/TextInput';
 import Select from './inner-components/Select';
 
 export default function Filters() {
@@ -10,7 +10,7 @@ export default function Filters() {
 
   return (
     <div>
-      <Input
+      <TextInput
         type="text"
         dataTestId="name-filter"
         name="nameFilter"

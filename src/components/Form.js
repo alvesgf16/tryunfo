@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
-import Input from './inner-components/Input';
+import { Form as BootstrapForm } from 'react-bootstrap';
+import TextInput from './inner-components/TextInput';
+import NumberInput from './inner-components/NumberInput';
+import ImageInput from './inner-components/ImageInput';
 import TextArea from './inner-components/TextArea';
 import Select from './inner-components/Select';
 import Checkbox from './inner-components/Checkbox';
@@ -21,58 +24,48 @@ export default function Form() {
     isSaveButtonDisabled,
   } = state;
 
+  const attrsStrs = [cardAttr1, cardAttr2, cardAttr3];
+  const attrs = attrsStrs.map((attr) => (attr === '' ? 0 : parseInt(attr, 10)));
+  const totalMax = 210;
+
   return (
-    <form onSubmit={ onSaveButtonClick }>
-      <Input
-        type="text"
+    <BootstrapForm onSubmit={ onSaveButtonClick }>
+      <TextInput
         dataTestId="name-input"
-        label="Name: "
+        label="Name"
         name="cardName"
         value={ cardName }
         onChange={ onInputChange }
       />
-      <TextArea
-        dataTestId="description-input"
-        label="Description: "
-        name="cardDescription"
-        value={ cardDescription }
-        onChange={ onInputChange }
-      />
-      <Input
-        type="number"
+      <TextArea value={ cardDescription } onChange={ onInputChange } />
+      <NumberInput
         dataTestId="attr1-input"
-        label="Attribute 1: "
+        label="Attr1"
         name="cardAttr1"
         value={ cardAttr1 }
         onChange={ onInputChange }
       />
-      <Input
-        type="number"
+      <NumberInput
         dataTestId="attr2-input"
-        label="Attribute 2: "
+        label="Attr2"
         name="cardAttr2"
         value={ cardAttr2 }
         onChange={ onInputChange }
       />
-      <Input
-        type="number"
+      <NumberInput
         dataTestId="attr3-input"
-        label="Attribute 3: "
+        label="Attr3"
         name="cardAttr3"
         value={ cardAttr3 }
         onChange={ onInputChange }
       />
-      <Input
-        type="text"
-        dataTestId="image-input"
-        label="Image: "
-        name="cardImage"
-        value={ cardImage }
-        onChange={ onInputChange }
-      />
+      <BootstrapForm.Text>
+        { `Remaining points = ${totalMax - attrs.reduce((acc, cur) => acc + cur)}` }
+      </BootstrapForm.Text>
+      <ImageInput value={ cardImage } onChange={ onInputChange } />
       <Select
         dataTestId="rare-input"
-        label="Rarity: "
+        label="Rarity"
         name="cardRare"
         value={ cardRare }
         onChange={ onInputChange }
@@ -95,6 +88,6 @@ export default function Form() {
         disabled={ isSaveButtonDisabled }
         onClick={ onSaveButtonClick }
       />
-    </form>
+    </BootstrapForm>
   );
 }

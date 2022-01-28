@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button as BootstrapButton } from 'react-bootstrap';
 
 export default function Button(props) {
   const { disabled, dataTestId, label } = props;
   return (
-    <button
+    <BootstrapButton
       type="submit"
       data-testid={ dataTestId }
       disabled={ disabled }
+      variant="primary"
     >
       { label }
-    </button>
+    </BootstrapButton>
   );
 }
 
