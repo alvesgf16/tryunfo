@@ -7,7 +7,7 @@ export default function Deck() {
   const { nameFilter, rareFilter, trunfoFilter, cards } = state;
 
   return (
-    <div>
+    <div className="flex flex-wrap justify-center w-full">
       { cards.filter((card) => {
         const { cardTrunfo, hasTrunfo, cardRare, cardName } = card;
 

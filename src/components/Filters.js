@@ -10,6 +10,7 @@ export default function Filters() {
 
   return (
     <div>
+      <h2 className="text-lg mt-12 mb-6">Search filters</h2>
       <TextInput
         type="text"
         dataTestId="name-filter"

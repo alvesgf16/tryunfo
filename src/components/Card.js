@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card as BootstrapCard } from 'react-bootstrap';
+import { Button, Card as BootstrapCard } from 'react-bootstrap';
 
 export default function Card({ deckCard, info }) {
   const {
@@ -17,8 +17,12 @@ export default function Card({ deckCard, info }) {
   } = info;
 
   return (
-    <div>
-      <BootstrapCard id={ cardName } className="flex flex-col">
+    <div className="flex flex-col items-center my-12">
+      <BootstrapCard
+        id={ cardName }
+        className="flex flex-col mx-7"
+        style={ { width: '25rem' } }
+      >
         <div className="flex justify-center items-center mt-4 mx-8 h-8">
           <BootstrapCard.Title
             data-testid="name-card"
@@ -84,13 +88,15 @@ export default function Card({ deckCard, info }) {
         </BootstrapCard.Body>
       </BootstrapCard>
       { deckCard && (
-        <button
+        <Button
           type="button"
           data-testid="delete-button"
+          className="mt-6"
           onClick={ deleteCard }
+          variant="outline-primary"
         >
           Excluir
-        </button>
+        </Button>
       ) }
     </div>
   );

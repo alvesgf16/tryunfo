@@ -6,7 +6,7 @@ export default function Select(props) {
   const { dataTestId, label, name, value, disabled, onChange } = props;
   return (
     <Form.Group className="mb-4" controlId={ dataTestId }>
-      <Form.Label>{ label }</Form.Label>
+      { label && <Form.Label>{ label }</Form.Label> }
       <Form.Select
         data-testid={ dataTestId }
         name={ name }
