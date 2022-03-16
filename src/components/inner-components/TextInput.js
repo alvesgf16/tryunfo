@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
+import { inputDefaultProps, inputPropTypes } from '../../services/inputPropTypes';
 
 export default function TextInput(props) {
   const { dataTestId, label, name, value, disabled, onChange } = props;
@@ -18,17 +18,7 @@ export default function TextInput(props) {
     </Form.Group>
   );
 }
-TextInput.propTypes = {
-  dataTestId: PropTypes.string.isRequired,
-  label: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-  ]).isRequired,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
-};
 
-TextInput.defaultProps = { label: '', disabled: false };
+TextInput.propTypes = inputPropTypes;
+
+TextInput.defaultProps = inputDefaultProps;
